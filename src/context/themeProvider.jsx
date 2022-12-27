@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState({ modulo: 2, multiplier: 90 });
 
   const contextValue = { theme, setTheme };
 

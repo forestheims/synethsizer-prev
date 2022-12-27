@@ -1,11 +1,5 @@
-import { useTheme } from '../../context/themeProvider';
+import styles from './Layout.css';
 
 export default function Footer() {
-  const { theme } = useTheme();
-
-  return (
-    <footer>
-      <p>{theme}</p>
-    </footer>
-  );
+  return <footer className={styles.Footer}></footer>;
 }

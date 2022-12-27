@@ -1,13 +1,13 @@
 import Footer from './Footer';
-import NavBar from './NavBar';
+import Header from './Header';
 import styles from './Layout.css';
 import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
     <>
-      <NavBar />
-      <main>
+      <Header />
+      <main className={styles.Main}>
         <Outlet />
       </main>
       <Footer />
