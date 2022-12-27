@@ -10,7 +10,7 @@ function Dot(props) {
   // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  const [num, setNum] = useState(1);
+  const [num, setNum] = useState(0);
   // Subscribe this component to the render-loop, rotate the mesh every frame
   const { theme, setTheme } = useTheme();
   const { modulo, multiplier } = theme;
@@ -18,10 +18,12 @@ function Dot(props) {
   useFrame((state, delta) => {
     const { ndex, length } = props;
     setNum((num) => num + delta / 20);
-    const x = Math.cos((ndex + 1) * ((2 * Math.PI) / multiplier) + num) * 2;
-    const y = Math.sin((ndex + 1) * ((2 * Math.PI) / multiplier) + num) * 2;
+    const x = Math.cos((2 * Math.PI * ndex) / multiplier + num) * 2;
+    const y = Math.sin((2 * Math.PI * ndex) / multiplier + num) * 2;
+    const z = Math.sin(num * ndex);
     ref.current.position.x = x;
     ref.current.position.y = y;
+    ref.current.position.z = z;
   });
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
