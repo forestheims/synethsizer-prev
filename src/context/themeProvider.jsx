@@ -3,7 +3,11 @@ import { createContext, useContext, useState } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState({ modulo: 2, multiplier: 90 });
+  const [theme, setTheme] = useState({
+    modulo: 2,
+    multiplier: 90,
+    displayed: 'Wave Frequency',
+  });
 
   const contextValue = { theme, setTheme };
 

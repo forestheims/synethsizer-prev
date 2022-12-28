@@ -3,62 +3,8 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import styles from './Home.css';
 import { useTheme } from '../../context/themeProvider';
-
-function Dot(props) {
-  // This reference gives us direct access to the THREE.Mesh object
-  const ref = useRef();
-  // Hold state for hovered and clicked events
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
-  const [num, setNum] = useState(0);
-  // Subscribe this component to the render-loop, rotate the mesh every frame
-  const { theme, setTheme } = useTheme();
-  const { modulo, multiplier } = theme;
-
-  useFrame((state, delta) => {
-    const { ndex, length } = props;
-    setNum((num) => num + delta / 20);
-    const x = Math.cos((2 * Math.PI * ndex) / multiplier + num) * 2;
-    const y = Math.sin((2 * Math.PI * ndex) / multiplier + num) * 2;
-    const z = Math.sin(num * ndex);
-    ref.current.position.x = x;
-    ref.current.position.y = y;
-    ref.current.position.z = z;
-  });
-  // Return the view, these are regular Threejs elements expressed in JSX
-  return (
-    <mesh
-      {...props}
-      ref={ref}
-      scale={clicked ? 2 : 1}
-      onClick={(event) => console.log('event.target', ref.current.position)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}
-    >
-      <sphereGeometry args={[0.09, 9, 9]} />
-      <meshStandardMaterial color={hovered ? 'yellowgreen' : 'orange'} />
-    </mesh>
-  );
-}
-
-function Beam(props) {
-  // This reference gives us direct access to the THREE.Mesh object
-  const ref = useRef();
-  const [destiny, setDestiny] = useState({});
-
-  // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => {
-    // ref.current.position.x = x;
-    // ref.current.position.y = y;
-  });
-  // Return the view, these are regular Threejs elements expressed in JSX
-  return (
-    <mesh {...props} ref={ref}>
-      <sphereGeometry args={[0.09, 9, 9]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
-  );
-}
+import Beam from '../Beam/Beam';
+import Dot from '../Dot/Dot';
 
 export default function Home() {
   const { theme, setTheme } = useTheme();

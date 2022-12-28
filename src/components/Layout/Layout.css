@@ -23,14 +23,75 @@ body {
     height: 45px;
 }
 
-.Inputs {
-    color: aliceblue;
+.DisplaySelect {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    margin: 10px
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
 }
+
+.Button {
+    background-color: #60606055;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: #606060AA;
+}
+
+.Construction {
+    display: flex;
+    color: aliceblue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    width: 300px;
+    height: fit-content;
+    background-color: #60606055;
+    padding: 20px;
+    line-height: 20px;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.OKButton {
+    background-color: #60606055;
+    width: 100px;
+    font-weight: 500;
+    height: fit-content;
+    padding: 3px;
+    border-radius: 5px;
+    margin: 15px 20px 0px 0px;
+    border: solid 2px #FFD;
+    z-index: 10;
+}
+
+.OKButton:hover {
+    cursor: pointer;
+    border: solid 2px #9d3;
+    background-color: #80808099;
+    
+}
+
+.HTwo {
+    color: aliceblue;
+    font-size: 1.5em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 10px;
+}
+
 
 .HOne {
     color: aliceblue;
