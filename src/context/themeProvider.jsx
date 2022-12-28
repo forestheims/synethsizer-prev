@@ -7,6 +7,7 @@ export const ThemeProvider = ({ children }) => {
     modulo: 2,
     multiplier: 90,
     displayed: 'Wave Frequency',
+    toneClicked: false,
   });
 
   const contextValue = { theme, setTheme };
