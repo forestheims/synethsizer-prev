@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div className={styles.Home}>
-      <Song bpm={225} isPlaying={toneClicked} volume={-45}>
+      <Song bpm={225} isPlaying={toneClicked} volume={-15}>
         {/* <Track
           steps={[
             ['A3', 'C#4', 'E3'],
@@ -245,7 +245,7 @@ export default function Home() {
           <Effect type="autoFilter" />
         </Track>
       </Song>
-      <Canvas>
+      <Canvas camera={[0, 0, 6]}>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
