@@ -44,7 +44,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
-    "three": "^0.148.0"
+    "reactronica": "^0.8.1-canary.0",
+    "three": "^0.148.0",
+    "tone": "^14.7.77"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",

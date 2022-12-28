@@ -2,14 +2,22 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '../../context/themeProvider';
 import styles from './Layout.css';
+import * as Tone from 'tone';
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
-  const { displayed } = theme;
+  const { displayed, toneClicked } = theme;
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
+  };
+  const handleToneClick = async () => {
+    // Tone.context.resume();
+
+    await Tone.start();
+    console.log('click');
+    setTheme({ ...theme, toneClicked: !toneClicked });
   };
 
   return (
@@ -22,6 +30,9 @@ export default function Header() {
         <h2 className={styles.HTwo}>{displayed}</h2>
         <button className={styles.Button} onClick={handleClick}>
           Next
+        </button>
+        <button className={styles.Button} onClick={handleToneClick}>
+          Audio {toneClicked ? 'On' : 'Off'}
         </button>
       </div>
       {clicked && (
