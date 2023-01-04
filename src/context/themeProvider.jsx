@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState({
     modulo: 2,
     multiplier: 90,
-    displayed: 'Wave Frequency',
+    displayed: 'Harmonic Motion',
     toneClicked: false,
   });
 

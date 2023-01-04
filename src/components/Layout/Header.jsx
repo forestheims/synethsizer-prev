@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <header className={styles.Header}>
-      <h1 className={styles.HOne}>Math Explore 3D</h1>
+      <h1 className={styles.HOne}>3D Oscillator</h1>
       <div className={styles.DisplaySelect}>
         <button className={styles.Button} onClick={handleClick}>
           Prev
