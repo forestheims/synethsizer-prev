@@ -4,9 +4,10 @@ import { themes } from '../assets/library';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [displayed, setDisplayed] = useState('Harmony');
+  const [displayed, setDisplayed] = useState('Spiral');
   const [theme, setTheme] = useState(themes[displayed]);
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
+  const [num, setNum] = useState(0);
 
   const next = () => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
@@ -23,7 +24,7 @@ export const ThemeProvider = ({ children }) => {
     setTheme(themes[displayed]);
   }, [displayed]);
 
-  const contextValue = { theme, setTheme, displayed, next, prev };
+  const contextValue = { theme, setTheme, displayed, next, prev, num, setNum };
 
   return (
     <ThemeContext.Provider value={contextValue}>

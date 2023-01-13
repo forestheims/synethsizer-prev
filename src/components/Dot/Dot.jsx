@@ -8,11 +8,11 @@ export default function Dot(props) {
   const ref = useRef();
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  const [num, setNum] = useState(0);
   //   const [triggerTone, setTriggerTone] = useState(false);
 
-  const { theme, setTheme } = useTheme();
-  const { modulo, multiplier, toneClicked } = theme;
+  const { theme, num, setNum } = useTheme();
+  const { multiplier, toneClicked, themeX, themeY, themeZ, inverseSpeed } =
+    theme;
   //   const synth = toneClicked ? new Tone.MembraneSynth().toDestination() : null;
 
   //   function playNote() {
@@ -33,10 +33,10 @@ export default function Dot(props) {
 
   useFrame((state, delta) => {
     const { ndex, length } = props;
-    setNum((num) => num + delta / 20);
-    const x = Math.cos((2 * Math.PI * ndex) / multiplier + num) * 2;
-    const y = Math.sin((2 * Math.PI * ndex) / multiplier + num) * 2;
-    const z = Math.sin(num * (ndex + 1));
+    setNum((num) => num + delta / inverseSpeed);
+    const x = themeX(ndex, multiplier, num);
+    const y = themeY(ndex, multiplier, num);
+    const z = themeZ(ndex, multiplier, num);
     // console.log('ndex', ndex);
     // if (z >= 0.95 && ndex === 66) {
     //   setTriggerTone(true);

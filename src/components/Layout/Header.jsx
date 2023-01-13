@@ -13,7 +13,7 @@ export default function Header() {
 
     await Tone.start();
     console.log('click');
-    setTheme({ ...theme, toneClicked: !toneClicked });
+    setTheme({ ...theme, toneClicked: !theme.toneClicked });
   };
 
   return (
