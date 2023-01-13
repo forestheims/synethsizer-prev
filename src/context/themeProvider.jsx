@@ -1,16 +1,29 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { themes } from '../assets/library';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState({
-    modulo: 2,
-    multiplier: 90,
-    displayed: 'Harmonic Motion',
-    toneClicked: false,
-  });
+  const [displayed, setDisplayed] = useState('Harmony');
+  const [theme, setTheme] = useState(themes[displayed]);
+  const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
 
-  const contextValue = { theme, setTheme };
+  const next = () => {
+    const indexOfDisplayed = themesKeys.indexOf(displayed);
+    if (displayed !== themesKeys[themesKeys.length - 1])
+      setDisplayed(themesKeys[indexOfDisplayed + 1]);
+  };
+  const prev = () => {
+    const indexOfDisplayed = themesKeys.indexOf(displayed);
+    if (displayed !== themesKeys[0])
+      setDisplayed(themesKeys[indexOfDisplayed - 1]);
+  };
+
+  useEffect(() => {
+    setTheme(themes[displayed]);
+  }, [displayed]);
+
+  const contextValue = { theme, setTheme, displayed, next, prev };
 
   return (
     <ThemeContext.Provider value={contextValue}>
