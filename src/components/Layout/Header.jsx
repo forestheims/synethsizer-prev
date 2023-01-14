@@ -5,37 +5,33 @@ import styles from './Layout.css';
 import * as Tone from 'tone';
 
 export default function Header() {
-  const { theme, setTheme } = useTheme();
-  const { displayed, toneClicked } = theme;
-  const [clicked, setClicked] = useState(false);
+  const { theme, setTheme, displayed, prev, next } = useTheme();
+  // const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
   const handleToneClick = async () => {
     // Tone.context.resume();
 
     await Tone.start();
     console.log('click');
-    setTheme({ ...theme, toneClicked: !toneClicked });
+    setTheme({ ...theme, toneClicked: !theme.toneClicked });
   };
 
   return (
     <header className={styles.Header}>
-      <h1 className={styles.HOne}>Math Explore 3D</h1>
+      <h1 className={styles.HOne}>Synethsizer | A Visual Synthesizer</h1>
       <div className={styles.DisplaySelect}>
-        <button className={styles.Button} onClick={handleClick}>
+        <button className={styles.Button} onClick={prev}>
           Prev
         </button>
         <h2 className={styles.HTwo}>{displayed}</h2>
-        <button className={styles.Button} onClick={handleClick}>
+        <button className={styles.Button} onClick={next}>
           Next
         </button>
         <button className={styles.Button} onClick={handleToneClick}>
-          Audio {toneClicked ? 'On' : 'Off'}
+          Audio {theme.toneClicked ? 'On' : 'Off'}
         </button>
       </div>
-      {clicked && (
+      {/* {clicked && (
         <div className={styles.Construction}>
           <span>
             This is just the beginning. More to explore will be added soon!
@@ -45,7 +41,7 @@ export default function Header() {
             OK
           </button>
         </div>
-      )}
+      )} */}
     </header>
   );
 }

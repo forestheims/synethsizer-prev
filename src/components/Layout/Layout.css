@@ -17,19 +17,12 @@ body {
 .Header {
     background-color: var(--color-6);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     width: 100vw;
-    height: 45px;
+    height: fit-content;
+    padding: 10px;
 }
-
-@media screen and (max-width: 600px) {
-    .Header {
-        height: 90px;
-        align-items: center;
-    }
-}
-
 
 .DisplaySelect {
     display: flex;
@@ -37,6 +30,8 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
 
 .Button {
     background-color: #60606055;
@@ -105,7 +100,6 @@ body {
     color: aliceblue;
     font-size: 1.5em;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 10px;
 }
 
 .Footer {
@@ -115,4 +109,21 @@ body {
     height: 45px;
     width: 100vw;
     background-color: var(--color-6);
+}
+
+@media screen and (max-width: 600px) {
+    .Header {
+        height: fit-content;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .DisplaySelect {
+        width: stretch;
+        justify-content: space-around;
+    }
+
+    .HOne {
+        font-size: 1.2rem;
+    }
 }
