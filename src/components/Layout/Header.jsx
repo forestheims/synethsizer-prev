@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header className={styles.Header}>
-      <h1 className={styles.HOne}>Synethsizer</h1>
+      <h1 className={styles.HOne}>Synethsizer | A Visual Synthesizer</h1>
       <div className={styles.DisplaySelect}>
         <button className={styles.Button} onClick={prev}>
           Prev

@@ -4,7 +4,7 @@ import { themes } from '../assets/library';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [displayed, setDisplayed] = useState('Spiral');
+  const [displayed, setDisplayed] = useState('Spirals');
   const [theme, setTheme] = useState(themes[displayed]);
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
   const [num, setNum] = useState(0);
@@ -21,6 +21,7 @@ export const ThemeProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    setNum(0);
     setTheme(themes[displayed]);
   }, [displayed]);
 
