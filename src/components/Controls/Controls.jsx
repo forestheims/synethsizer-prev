@@ -1,19 +1,12 @@
 import React from 'react';
+import { useTheme } from '../../context/themeProvider';
 import styles from './Controls.css';
 
 export default function Controls() {
+  const { theme, setTheme } = useTheme();
+  const { multiplier } = theme;
   return (
     <div className={styles.Controls}>
-      <label htmlFor="modulo">
-        Modulo
-        <input
-          type="number"
-          id="modulo"
-          value={modulo}
-          min={1}
-          onChange={(e) => setTheme({ ...theme, modulo: +e.target.value })}
-        />
-      </label>
       <label htmlFor="multiplier">
         Multiplier
         <input

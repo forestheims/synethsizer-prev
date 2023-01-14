@@ -7,6 +7,7 @@ import { Song, Track, Instrument, Effect } from 'reactronica';
 import Beam from '../Beam/Beam';
 import Dot from '../Dot/Dot';
 import { dripDrops } from '../../assets/dripDrops';
+import Controls from '../Controls/Controls';
 
 export default function Home() {
   const { theme, setTheme, track } = useTheme();
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <div className={styles.Home}>
+      <Controls />
       <Song bpm={225} isPlaying={toneClicked} volume={-15}>
         <Track
           steps={track}

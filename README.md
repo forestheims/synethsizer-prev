@@ -14,3 +14,5 @@
    1. free
    1. features
    1. full
+
+haven't seen much new in terms of audio visualizers.

@@ -5,7 +5,8 @@ import styles from './Layout.css';
 import * as Tone from 'tone';
 
 export default function Header() {
-  const { theme, setTheme, displayed, prev, next } = useTheme();
+  const { theme, setTheme, displayed, prev, next, playPause, reverse } =
+    useTheme();
   // const [clicked, setClicked] = useState(false);
 
   const handleToneClick = async () => {
@@ -20,6 +21,12 @@ export default function Header() {
     <header className={styles.Header}>
       <h1 className={styles.HOne}>Synethsizer | A Visual Synthesizer</h1>
       <div className={styles.DisplaySelect}>
+        <button className={styles.Button} onClick={playPause}>
+          Play / Pause
+        </button>
+        <button className={styles.Button} onClick={reverse}>
+          Reverse
+        </button>
         <button className={styles.Button} onClick={prev}>
           Prev
         </button>

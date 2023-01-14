@@ -10,6 +10,8 @@ export const ThemeProvider = ({ children }) => {
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
   const [num, setNum] = useState(0);
   const [track, setTrack] = useState(dripDrops);
+  const [playing, setPlaying] = useState(true);
+  const [forward, setForward] = useState(true);
 
   const next = () => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
@@ -20,6 +22,13 @@ export const ThemeProvider = ({ children }) => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
     if (displayed !== themesKeys[0])
       setDisplayed(themesKeys[indexOfDisplayed - 1]);
+  };
+
+  const playPause = () => {
+    setPlaying(!playing);
+  };
+  const reverse = () => {
+    setForward(!forward);
   };
 
   useEffect(() => {
@@ -37,6 +46,11 @@ export const ThemeProvider = ({ children }) => {
     setNum,
     track,
     setTrack,
+    reverse,
+    playPause,
+    forward,
+    reverse,
+    playing,
   };
 
   return (

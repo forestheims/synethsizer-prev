@@ -10,7 +10,7 @@ export default function Dot(props) {
   const [clicked, click] = useState(false);
   //   const [triggerTone, setTriggerTone] = useState(false);
 
-  const { theme, num, setNum } = useTheme();
+  const { theme, num, setNum, playing, forward, playPause } = useTheme();
   const { multiplier, toneClicked, themeX, themeY, themeZ, inverseSpeed } =
     theme;
   //   const synth = toneClicked ? new Tone.MembraneSynth().toDestination() : null;
@@ -33,7 +33,12 @@ export default function Dot(props) {
 
   useFrame((state, delta) => {
     const { ndex, length } = props;
-    setNum((num) => num + delta / inverseSpeed);
+    setNum((num) =>
+      forward
+        ? num + (playing ? delta : 0) / inverseSpeed
+        : num - (playing ? delta : 0) / inverseSpeed
+    );
+    console.log('num, forward, playing', num, forward, playing);
     const x = themeX(ndex, multiplier, num);
     const y = themeY(ndex, multiplier, num);
     const z = themeZ(ndex, multiplier, num);
