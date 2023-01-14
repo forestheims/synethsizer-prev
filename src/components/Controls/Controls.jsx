@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './VortexControls.css';
+import styles from './Controls.css';
 
-export default function VortexControls() {
+export default function Controls() {
   return (
-    <div className={styles.VortexControls}>
+    <div className={styles.Controls}>
       <label htmlFor="modulo">
         Modulo
         <input

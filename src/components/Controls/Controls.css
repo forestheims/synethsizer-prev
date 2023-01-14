@@ -1,0 +1,14 @@
+.Controls {
+    position: absolute;
+    z-index: 5;
+    margin: 20px;
+    padding: 20px;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 10px;
+    border: solid 2px #9d3;
+    background-color: #44444444;
+}

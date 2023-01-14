@@ -9,8 +9,8 @@ import Dot from '../Dot/Dot';
 import { dripDrops } from '../../assets/dripDrops';
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
-  const { modulo, multiplier, toneClicked } = theme;
+  const { theme, setTheme, track } = useTheme();
+  const { multiplier, toneClicked } = theme;
   const [sphereArray, setSphereArray] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Home() {
     <div className={styles.Home}>
       <Song bpm={225} isPlaying={toneClicked} volume={-15}>
         <Track
-          steps={dripDrops}
+          steps={track}
           onStepPlay={(step, index) => {
             // doSomething(step, index);
           }}

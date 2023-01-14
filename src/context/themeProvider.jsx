@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { themes } from '../assets/library';
+import { themes } from '../assets/library.js';
+import { dripDrops } from '../assets/dripDrops.js';
 
 const ThemeContext = createContext();
 
@@ -8,6 +9,7 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(themes[displayed]);
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
   const [num, setNum] = useState(0);
+  const [track, setTrack] = useState(dripDrops);
 
   const next = () => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
@@ -25,7 +27,17 @@ export const ThemeProvider = ({ children }) => {
     setTheme(themes[displayed]);
   }, [displayed]);
 
-  const contextValue = { theme, setTheme, displayed, next, prev, num, setNum };
+  const contextValue = {
+    theme,
+    setTheme,
+    displayed,
+    next,
+    prev,
+    num,
+    setNum,
+    track,
+    setTrack,
+  };
 
   return (
     <ThemeContext.Provider value={contextValue}>
