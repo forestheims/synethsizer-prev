@@ -21,12 +21,6 @@ export default function Header() {
     <header className={styles.Header}>
       <h1 className={styles.HOne}>Synethsizer | A Visual Synthesizer</h1>
       <div className={styles.DisplaySelect}>
-        <button className={styles.Button} onClick={playPause}>
-          Play / Pause
-        </button>
-        <button className={styles.Button} onClick={reverse}>
-          Reverse
-        </button>
         <button className={styles.Button} onClick={prev}>
           Prev
         </button>
@@ -35,7 +29,7 @@ export default function Header() {
           Next
         </button>
         <button className={styles.Button} onClick={handleToneClick}>
-          Audio {theme.toneClicked ? 'On' : 'Off'}
+          {theme.toneClicked ? 'Pause' : 'Play'} Audio
         </button>
       </div>
       {/* {clicked && (

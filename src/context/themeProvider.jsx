@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { themes } from '../assets/library.js';
 import { dripDrops } from '../assets/dripDrops.js';
+import * as THREE from 'three';
 
 const ThemeContext = createContext();
 
@@ -10,8 +11,16 @@ export const ThemeProvider = ({ children }) => {
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
   const [num, setNum] = useState(0);
   const [track, setTrack] = useState(dripDrops);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [forward, setForward] = useState(true);
+  const center = new THREE.Vector3();
+
+  const [cameraStarting, setCamera] = useState({
+    position: [0, 0, 6],
+    target: center,
+  });
+
+  const resetCamera = () => {};
 
   const next = () => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
@@ -51,6 +60,8 @@ export const ThemeProvider = ({ children }) => {
     forward,
     reverse,
     playing,
+    cameraStarting,
+    resetCamera,
   };
 
   return (

@@ -6,7 +6,6 @@ import { useTheme } from '../../context/themeProvider';
 import { Song, Track, Instrument, Effect } from 'reactronica';
 import Beam from '../Beam/Beam';
 import Dot from '../Dot/Dot';
-import { dripDrops } from '../../assets/dripDrops';
 import Controls from '../Controls/Controls';
 
 export default function Home() {
@@ -39,7 +38,11 @@ export default function Home() {
           <Effect type="autoFilter" />
         </Track>
       </Song>
-      <Canvas camera={[0, 0, 6]}>
+      <Canvas
+        camera={{
+          position: [0, 0, 6],
+        }}
+      >
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
