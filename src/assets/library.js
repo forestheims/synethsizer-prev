@@ -2,6 +2,8 @@ export const themes = {
   Spirals: {
     multiplier: 60,
     inverseSpeed: 800,
+    glowing: 0,
+    trailing: 0,
     themeX: (ndex, multiplier, num) =>
       Math.sin(num * (multiplier / (ndex + 1))) * Math.sin(num * (ndex + 1)),
     themeY: (ndex, multiplier, num) =>
@@ -11,6 +13,8 @@ export const themes = {
   },
   Harmony: {
     multiplier: 90,
+    glowing: 0,
+    trailing: 0,
     inverseSpeed: 2000,
     themeX: (ndex, multiplier, num) =>
       Math.cos((2 * Math.PI * ndex) / multiplier + num) * 2,

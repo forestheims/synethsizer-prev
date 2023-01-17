@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }) => {
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
   const [num, setNum] = useState(0);
   const [track, setTrack] = useState(dripDrops);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [forward, setForward] = useState(true);
 
   const next = () => {

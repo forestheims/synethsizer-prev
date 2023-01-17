@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, render } from '@react-three/fiber';
+import * as THREE from 'three';
 import styles from './Dot.css';
 import { useTheme } from '../../context/themeProvider';
 // import * as Tone from 'tone';
@@ -56,20 +57,23 @@ export default function Dot(props) {
     ref.current.position.x = x;
     ref.current.position.y = y;
     ref.current.position.z = z;
+    THREE.Cache.clear();
   });
 
   return (
-    <mesh
-      className={styles.Dot}
-      {...props}
-      ref={ref}
-      scale={clicked ? 2 : 1}
-      onClick={(event) => console.log('event.target', ref.current.position)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}
-    >
-      <sphereGeometry args={[0.09, 9, 9]} />
-      <meshStandardMaterial color={hovered ? 'yellowgreen' : 'orange'} />
-    </mesh>
+    <>
+      <mesh
+        className={styles.Dot}
+        {...props}
+        ref={ref}
+        scale={clicked ? 2 : 1}
+        onClick={(event) => void click(!clicked)}
+        onPointerOver={(event) => hover(true)}
+        onPointerOut={(event) => hover(false)}
+      >
+        <sphereGeometry args={[0.09, 9, 9]} />
+        <meshStandardMaterial color={hovered ? 'yellowgreen' : 'orange'} />
+      </mesh>
+    </>
   );
 }
