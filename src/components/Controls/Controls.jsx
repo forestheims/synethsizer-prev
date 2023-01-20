@@ -1,14 +1,17 @@
 import React from 'react';
 import { useTheme } from '../../context/themeProvider';
 import styles from './Controls.css';
+import { Stats } from '@react-three/drei';
 
 export default function Controls() {
-  const { theme, setTheme, playing, forward, playPause, reverse, resetCamera } =
-    useTheme();
-  const { multiplier, glowing, trailing } = theme;
+  const { theme, setTheme, playing, forward, playPause, reverse } = useTheme();
+  const { multiplier, glowing, trailing, inverseSpeed } = theme;
+
+  const resetCamera = () => {};
 
   return (
     <div className={styles.Controls}>
+      <Stats showPanel={2} />
       <button
         className={styles.ControlButton}
         id="play"
@@ -28,7 +31,7 @@ export default function Controls() {
       </button>
 
       <label htmlFor="multiplier">
-        Multiplier: {multiplier}
+        Multiplier:
         <input
           type="range"
           id="multiplier"
@@ -37,6 +40,21 @@ export default function Controls() {
           max={99}
           onChange={(e) => setTheme({ ...theme, multiplier: +e.target.value })}
         />
+        {multiplier}
+      </label>
+      <label htmlFor="speed">
+        Inverse Speed:
+        <input
+          type="range"
+          id="speed"
+          value={inverseSpeed}
+          min={1}
+          max={2500}
+          onChange={(e) =>
+            setTheme({ ...theme, inverseSpeed: +e.target.value })
+          }
+        />
+        {inverseSpeed}
       </label>
       {/* <label htmlFor="glow">
         Glow
@@ -56,14 +74,14 @@ export default function Controls() {
           onChange={(e) => setTheme({ ...theme, trailing: +e.target.value })}
         />
       </label> */}
-      <button
+      {/* <button
         className={styles.ControlButton}
         id="reset"
         value={forward}
         onClick={resetCamera}
       >
         Reset Camera
-      </button>
+      </button> */}
     </div>
   );
 }

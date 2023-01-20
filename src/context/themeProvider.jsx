@@ -6,21 +6,23 @@ import * as THREE from 'three';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [displayed, setDisplayed] = useState('Spirals');
+  const [displayed, setDisplayed] = useState('Harmony');
   const [theme, setTheme] = useState(themes[displayed]);
   const [themesKeys, setThemesKeys] = useState(Object.keys(themes));
   const [num, setNum] = useState(0);
-  const [track, setTrack] = useState(dripDrops);
+  const [tracks, setTracks] = useState([
+    {
+      steps: dripDrops,
+      instrument: {
+        type: 'monoSynth',
+        oscillator: { type: 'square' },
+        envelope: { attack: 0.1, sustain: 0.1, release: 0.05, decay: 0.2 },
+      },
+      effects: [{ type: 'autoFilter' }],
+    },
+  ]);
   const [playing, setPlaying] = useState(true);
   const [forward, setForward] = useState(true);
-  const center = new THREE.Vector3();
-
-  const [cameraStarting, setCamera] = useState({
-    position: [0, 0, 6],
-    target: center,
-  });
-
-  const resetCamera = () => {};
 
   const next = () => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
@@ -53,15 +55,13 @@ export const ThemeProvider = ({ children }) => {
     prev,
     num,
     setNum,
-    track,
-    setTrack,
+    tracks,
+    setTracks,
     reverse,
     playPause,
     forward,
     reverse,
     playing,
-    cameraStarting,
-    resetCamera,
   };
 
   return (
