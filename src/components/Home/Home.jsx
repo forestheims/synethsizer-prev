@@ -3,14 +3,15 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import styles from './Home.css';
 import { useTheme } from '../../context/themeProvider';
-import { Song, Track, Instrument, Effect } from 'reactronica';
-import Beam from '../Beam/Beam';
+import CenterPoint from '../CenterPoint/CenterPoint';
 import Dot from '../Dot/Dot';
-import { dripDrops } from '../../assets/dripDrops';
+import Controls from '../Controls/Controls';
+// import { AxesHelper, GridHelper } from 'three';
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
-  const { modulo, multiplier, toneClicked } = theme;
+  const {
+    theme: { multiplier },
+  } = useTheme();
   const [sphereArray, setSphereArray] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -22,22 +23,13 @@ export default function Home() {
 
   return (
     <div className={styles.Home}>
-      <Song bpm={225} isPlaying={toneClicked} volume={-15}>
-        <Track
-          steps={dripDrops}
-          onStepPlay={(step, index) => {
-            // doSomething(step, index);
-          }}
-        >
-          <Instrument
-            type="monoSynth"
-            oscillator={{ type: 'square' }}
-            envelope={{ attack: 0.1, sustain: 0.1, release: 0.05, decay: 0.2 }}
-          />
-          <Effect type="autoFilter" />
-        </Track>
-      </Song>
-      <Canvas camera={[0, 0, 6]}>
+      <Controls />
+      <Canvas
+        camera={{
+          position: [0, 0, 6],
+        }}
+      >
+        <OrbitControls />
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
@@ -45,9 +37,14 @@ export default function Home() {
           sphereArray.map((n, i, r) => {
             return <Dot key={i} ndex={i} />;
           })}
-
-        <Beam position={[0, 0, -1]} />
-        <OrbitControls />
+        <CenterPoint position={[0, 0, -1]} />
+        {/* <axesHelper />
+        <gridHelper position={[0, 5, 0]} />
+        <gridHelper position={[0, -5, 0]} />
+        <gridHelper position={[5, 0, 0]} rotation={[0, 0, Math.PI / 2]} />
+        <gridHelper position={[-5, 0, 0]} rotation={[0, 0, Math.PI / 2]} />
+        <gridHelper position={[0, 0, 5]} rotation={[Math.PI / 2, 0, 0]} />
+        <gridHelper position={[0, 0, -5]} rotation={[Math.PI / 2, 0, 0]} /> */}
       </Canvas>
     </div>
   );

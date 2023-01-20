@@ -5,7 +5,8 @@ import styles from './Layout.css';
 import * as Tone from 'tone';
 
 export default function Header() {
-  const { theme, setTheme, displayed, prev, next } = useTheme();
+  const { theme, setTheme, displayed, prev, next, playPause, reverse } =
+    useTheme();
   // const [clicked, setClicked] = useState(false);
 
   const handleToneClick = async () => {
@@ -28,7 +29,7 @@ export default function Header() {
           Next
         </button>
         <button className={styles.Button} onClick={handleToneClick}>
-          Audio {theme.toneClicked ? 'On' : 'Off'}
+          {theme.toneClicked ? 'Pause' : 'Play'} Audio
         </button>
       </div>
       {/* {clicked && (

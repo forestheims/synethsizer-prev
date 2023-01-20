@@ -116,6 +116,8 @@ body {
         height: fit-content;
         align-items: center;
         flex-direction: column;
+        padding-bottom: 3px;
+        gap: 6px;
     }
 
     .DisplaySelect {
@@ -125,5 +127,9 @@ body {
 
     .HOne {
         font-size: 1.2rem;
+    }
+
+    .Footer {
+        height: 12px;
     }
 }
