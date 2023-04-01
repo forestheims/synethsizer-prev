@@ -11,7 +11,7 @@ export default function Controls() {
 
   return (
     <div className={styles.Controls}>
-      <Stats showPanel={2} />
+      {/* <Stats showPanel={2} /> */}
       <button
         className={styles.ControlButton}
         id="play"
