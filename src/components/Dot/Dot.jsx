@@ -40,7 +40,7 @@ export default function Dot(props) {
         ? num + (playing ? delta : 0) / inverseSpeed
         : num - (playing ? delta : 0) / inverseSpeed
     );
-    console.log('num, forward, playing', num, forward, playing);
+    // console.log('num, forward, playing', num, forward, playing);
     const x = themeX(ndex, multiplier, num);
     const y = themeY(ndex, multiplier, num);
     const z = themeZ(ndex, multiplier, num);

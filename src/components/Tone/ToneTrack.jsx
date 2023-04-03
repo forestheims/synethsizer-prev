@@ -8,7 +8,7 @@ export default function ToneTrack({ steps, instrument, effects }) {
     <Track steps={steps}>
       <ToneInstrument instrument={instrument} />
       {effects.map((effect) => {
-        return <ToneEffect effect={effect} />;
+        return <ToneEffect key={effect} effect={effect} />;
       })}
     </Track>
   );
