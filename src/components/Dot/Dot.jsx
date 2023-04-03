@@ -58,17 +58,17 @@ export default function Dot(props) {
     // if (ndex === 1) console.log('z :>> ', triggerTone, z);
 
     const piValue = Math.PI;
-    let r = x * 192 + 128;
+    let r = Math.round(z * 128 + 128);
     if (r > 255) r = 255;
     if (r < 0) r = 0;
     // const r = sin(a) * 192 + 128;
     // r=max(0,min(255,y))
-    let g = z * 192 + 128;
+    let g = Math.round(z * 128 + 128);
     if (g > 255) g = 255;
     if (g < 0) g = 0;
     // const g = sin(a - (2 * piValue) / 3) * 192 + 128;
     // g=max(0,min(255,y))
-    let b = y * 192 + 128;
+    let b = Math.round(z * 128 + 128);
     if (b > 255) b = 255;
     if (b < 0) b = 0;
     // const b = sin(a - (4 * piValue) / 3) * 192 + 128;
