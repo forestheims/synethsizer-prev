@@ -8,6 +8,20 @@ export default function Controls() {
   const { multiplier, glowing, trailing, inverseSpeed } = theme;
 
   const resetCamera = () => {};
+  const clickPlayPause = () => {
+    playPause();
+    umami.trackEvent('play_pause_pressed', theme);
+  };
+  const clickReverse = () => {
+    reverse();
+    umami.trackEvent('reverse_pressed', theme);
+  };
+  const changeMultiplier = (e) => {
+    setTheme({ ...theme, multiplier: +e.target.value });
+  };
+  const changeSpeed = (e) => {
+    setTheme({ ...theme, inverseSpeed: +e.target.value });
+  };
 
   return (
     <div className={styles.Controls}>
@@ -16,7 +30,7 @@ export default function Controls() {
         className={styles.ControlButton}
         id="play"
         value={glowing}
-        onClick={playPause}
+        onClick={clickPlayPause}
       >
         {playing ? 'Pause' : 'Play'}
       </button>
@@ -25,7 +39,7 @@ export default function Controls() {
         className={styles.ControlButton}
         id="reverse"
         value={forward}
-        onClick={reverse}
+        onClick={clickReverse}
       >
         {forward ? 'Reverse' : 'Forward'}
       </button>
@@ -38,7 +52,7 @@ export default function Controls() {
           value={multiplier}
           min={1}
           max={99}
-          onChange={(e) => setTheme({ ...theme, multiplier: +e.target.value })}
+          onChange={(e) => changeMultiplier(e)}
         />
         {multiplier}
       </label>
@@ -50,9 +64,7 @@ export default function Controls() {
           value={inverseSpeed}
           min={1}
           max={2500}
-          onChange={(e) =>
-            setTheme({ ...theme, inverseSpeed: +e.target.value })
-          }
+          onChange={(e) => changeSpeed(e)}
         />
         {inverseSpeed}
       </label>
