@@ -63,12 +63,12 @@ export default function Dot(props) {
     if (r < 0) r = 0;
     // const r = sin(a) * 192 + 128;
     // r=max(0,min(255,y))
-    let g = Math.round(z * 128 + 128);
+    let g = Math.round(z * 128 + (y * 128 + 128));
     if (g > 255) g = 255;
     if (g < 0) g = 0;
     // const g = sin(a - (2 * piValue) / 3) * 192 + 128;
     // g=max(0,min(255,y))
-    let b = Math.round(z * 128 + 128);
+    let b = Math.round(z * 128 + (x * 128 + 128));
     if (b > 255) b = 255;
     if (b < 0) b = 0;
     // const b = sin(a - (4 * piValue) / 3) * 192 + 128;
