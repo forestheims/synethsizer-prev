@@ -9,7 +9,8 @@ export default function Dot(props) {
   const ref = useRef();
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  //   const [triggerTone, setTriggerTone] = useState(false);
+  // const [triggerTone, setTriggerTone] = useState(false);
+  const [color, setColor] = useState('orange');
 
   const { theme, num, setNum, playing, forward, playPause } = useTheme();
   const { multiplier, toneClicked, themeX, themeY, themeZ, inverseSpeed } =
@@ -39,7 +40,7 @@ export default function Dot(props) {
         ? num + (playing ? delta : 0) / inverseSpeed
         : num - (playing ? delta : 0) / inverseSpeed
     );
-    console.log('num, forward, playing', num, forward, playing);
+    // console.log('num, forward, playing', num, forward, playing);
     const x = themeX(ndex, multiplier, num);
     const y = themeY(ndex, multiplier, num);
     const z = themeZ(ndex, multiplier, num);
@@ -47,6 +48,7 @@ export default function Dot(props) {
     // if (z >= 0.95 && ndex === 66) {
     //   setTriggerTone(true);
     // }
+
     // z >= 0.95 && ndex === 66 ? setTriggerTone(true) : setTriggerTone(false);
     // if (z > 0.95 && z < 0.95024 && ndex === 1 && !triggerTone) {
     //   setTriggerTone(true);
@@ -54,11 +56,35 @@ export default function Dot(props) {
     //   setTriggerTone(false);
     // }
     // if (ndex === 1) console.log('z :>> ', triggerTone, z);
+
+    const piValue = Math.PI;
+    let r = Math.round(z * 128 + 128);
+    if (r > 255) r = 255;
+    if (r < 0) r = 0;
+    // const r = sin(a) * 192 + 128;
+    // r=max(0,min(255,y))
+    let g = Math.round(z * 128 + (y * 128 + 128));
+    if (g > 255) g = 255;
+    if (g < 0) g = 0;
+    // const g = sin(a - (2 * piValue) / 3) * 192 + 128;
+    // g=max(0,min(255,y))
+    let b = Math.round(z * 128 + (x * 128 + 128));
+    if (b > 255) b = 255;
+    if (b < 0) b = 0;
+    // const b = sin(a - (4 * piValue) / 3) * 192 + 128;
+    // b=max(0,min(255,y))
+    setColor(`rgb(${r},${g},${b})`);
+
     ref.current.position.x = x;
     ref.current.position.y = y;
     ref.current.position.z = z;
     THREE.Cache.clear();
   });
+
+  // function ColorMe(n, m) {
+  //   // return (((((0xFF << 8) || r) << 8) || g) << 8) || b
+  //   return `rgb(${r},${g},${b})`;
+  // }
 
   return (
     <>
@@ -72,7 +98,8 @@ export default function Dot(props) {
         onPointerOut={(event) => hover(false)}
       >
         <sphereGeometry args={[0.09, 9, 9]} />
-        <meshStandardMaterial color={hovered ? 'yellowgreen' : 'orange'} />
+        {/* <meshStandardMaterial color={'rgb(122,80,187)'} /> */}
+        <meshStandardMaterial color={color} />
       </mesh>
     </>
   );

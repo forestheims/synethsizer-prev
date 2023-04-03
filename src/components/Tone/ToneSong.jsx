@@ -14,6 +14,7 @@ export default function ToneSong() {
       {tracks.map((track) => {
         return (
           <ToneTrack
+            key={track.instrument}
             steps={track.steps}
             instrument={track.instrument}
             effects={track.effects}
