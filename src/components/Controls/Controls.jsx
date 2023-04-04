@@ -19,11 +19,15 @@ export default function Controls() {
   const resetCamera = () => {};
   const clickPlayPause = () => {
     playPause();
-    // umami.trackEvent('play_pause_pressed', theme);
+    umami.trackEvent('play_pause_pressed', theme);
   };
   const clickReverse = () => {
     reverse();
-    // umami.trackEvent('reverse_pressed', theme);
+    umami.trackEvent('reverse_pressed', theme);
+  };
+  const changeColor = (colorChoice) => {
+    setColor(colorChoice);
+    umami.trackEvent('color_changed', colorChoice);
   };
   const changeMultiplier = (e) => {
     setTheme({ ...theme, multiplier: +e.target.value });
@@ -82,7 +86,7 @@ export default function Controls() {
         <select
           id="color"
           value={color}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={(e) => changeColor(e.target.value)}
         >
           <option value="orange">Orange-inal</option>
           <option value="rainbow">Rainbow based on XYZ</option>
