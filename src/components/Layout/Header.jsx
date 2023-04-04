@@ -13,15 +13,15 @@ export default function Header() {
     // Tone.context.resume();
 
     await Tone.start();
-    window.umami.trackEvent('audio_play_pressed', theme);
+    // window.umami.trackEvent('audio_play_pressed', theme);
     setTheme({ ...theme, toneClicked: !theme.toneClicked });
   };
   const handleNext = () => {
-    window.umami.trackEvent('next_pressed', theme);
+    // window.umami.trackEvent('next_pressed', theme);
     next();
   };
   const handlePrev = () => {
-    window.umami.trackEvent('prev_pressed', theme);
+    // window.umami.trackEvent('prev_pressed', theme);
     prev();
   };
 

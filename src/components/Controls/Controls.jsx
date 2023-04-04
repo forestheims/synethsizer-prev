@@ -4,17 +4,26 @@ import styles from './Controls.css';
 import { Stats } from '@react-three/drei';
 
 export default function Controls() {
-  const { theme, setTheme, playing, forward, playPause, reverse } = useTheme();
+  const {
+    theme,
+    setTheme,
+    playing,
+    forward,
+    playPause,
+    reverse,
+    color,
+    setColor,
+  } = useTheme();
   const { multiplier, glowing, trailing, inverseSpeed } = theme;
 
   const resetCamera = () => {};
   const clickPlayPause = () => {
     playPause();
-    umami.trackEvent('play_pause_pressed', theme);
+    // umami.trackEvent('play_pause_pressed', theme);
   };
   const clickReverse = () => {
     reverse();
-    umami.trackEvent('reverse_pressed', theme);
+    // umami.trackEvent('reverse_pressed', theme);
   };
   const changeMultiplier = (e) => {
     setTheme({ ...theme, multiplier: +e.target.value });
@@ -68,24 +77,18 @@ export default function Controls() {
         />
         {inverseSpeed}
       </label>
-      {/* <label htmlFor="glow">
-        Glow
-        <input
-          type="range"
-          id="glow"
-          value={glowing}
-          onChange={(e) => setTheme({ ...theme, glowing: +e.target.value })}
-        />
+      <label htmlFor="color">
+        Color
+        <select
+          id="color"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+        >
+          <option value="orange">Orange-inal</option>
+          <option value="rainbow">Rainbow based on XYZ</option>
+          <option value="trippy">Red Pattern</option>
+        </select>
       </label>
-      <label htmlFor="trail">
-        Trail
-        <input
-          type="range"
-          id="trail"
-          value={trailing}
-          onChange={(e) => setTheme({ ...theme, trailing: +e.target.value })}
-        />
-      </label> */}
       {/* <button
         className={styles.ControlButton}
         id="reset"

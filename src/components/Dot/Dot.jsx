@@ -10,9 +10,10 @@ export default function Dot(props) {
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
   // const [triggerTone, setTriggerTone] = useState(false);
-  const [color, setColor] = useState('orange');
+  const [dotColor, setDotColor] = useState('black');
 
-  const { theme, num, setNum, playing, forward, playPause } = useTheme();
+  const { theme, num, setNum, playing, forward, playPause, color, setColor } =
+    useTheme();
   const { multiplier, toneClicked, themeX, themeY, themeZ, inverseSpeed } =
     theme;
   //   const synth = toneClicked ? new Tone.MembraneSynth().toDestination() : null;
@@ -57,23 +58,42 @@ export default function Dot(props) {
     // }
     // if (ndex === 1) console.log('z :>> ', triggerTone, z);
 
-    const piValue = Math.PI;
-    let r = Math.round(z * 128 + 128);
-    if (r > 255) r = 255;
-    if (r < 0) r = 0;
-    // const r = sin(a) * 192 + 128;
-    // r=max(0,min(255,y))
-    let g = Math.round(z * 128 + (y * 128 + 128));
-    if (g > 255) g = 255;
-    if (g < 0) g = 0;
-    // const g = sin(a - (2 * piValue) / 3) * 192 + 128;
-    // g=max(0,min(255,y))
-    let b = Math.round(z * 128 + (x * 128 + 128));
-    if (b > 255) b = 255;
-    if (b < 0) b = 0;
-    // const b = sin(a - (4 * piValue) / 3) * 192 + 128;
-    // b=max(0,min(255,y))
-    setColor(`rgb(${r},${g},${b})`);
+    let r;
+    let g;
+    let b;
+
+    if (color === 'orange') {
+      if (dotColor !== 'orange') {
+        setDotColor('orange');
+      }
+    } else if (color === 'rainbow') {
+      r = Math.round(z * 128 + 128);
+      g = Math.round(z * 128 + (y * 128 + 128));
+      b = Math.round(z * 128 + (x * 128 + 128));
+
+      if (r > 255) r = 255;
+      if (r < 0) r = 0;
+      if (g > 255) g = 255;
+      if (g < 0) g = 0;
+      if (b > 255) b = 255;
+      if (b < 0) b = 0;
+      setDotColor(`rgb(${r},${g},${b})`);
+    } else if (color === 'trippy') {
+      const piValue = Math.PI;
+      r = z * 192 + 128;
+      g = z * 192 + 128;
+      b = z * 192 + 128;
+      // g = (z - (2 * piValue) / 3) * 192 + 128;
+      // b = (z - (4 * piValue) / 3) * 192 + 128;
+
+      if (r > 255) r = 255;
+      if (r < 0) r = 0;
+      if (g > 255) g = 255;
+      if (g < 0) g = 0;
+      if (b > 255) b = 255;
+      if (b < 0) b = 0;
+      setDotColor(`rgb(${r},0,0)`);
+    }
 
     ref.current.position.x = x;
     ref.current.position.y = y;
@@ -99,7 +119,7 @@ export default function Dot(props) {
       >
         <sphereGeometry args={[0.09, 9, 9]} />
         {/* <meshStandardMaterial color={'rgb(122,80,187)'} /> */}
-        <meshStandardMaterial color={color} />
+        <meshStandardMaterial color={dotColor} />
       </mesh>
     </>
   );
