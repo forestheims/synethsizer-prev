@@ -24,6 +24,8 @@ export const ThemeProvider = ({ children }) => {
   const [playing, setPlaying] = useState(true);
   const [forward, setForward] = useState(true);
 
+  const [color, setColor] = useState('orange');
+
   const next = () => {
     const indexOfDisplayed = themesKeys.indexOf(displayed);
     if (displayed !== themesKeys[themesKeys.length - 1])
@@ -62,6 +64,8 @@ export const ThemeProvider = ({ children }) => {
     forward,
     reverse,
     playing,
+    color,
+    setColor,
   };
 
   return (

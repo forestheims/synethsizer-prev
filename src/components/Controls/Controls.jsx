@@ -4,10 +4,37 @@ import styles from './Controls.css';
 import { Stats } from '@react-three/drei';
 
 export default function Controls() {
-  const { theme, setTheme, playing, forward, playPause, reverse } = useTheme();
+  const {
+    theme,
+    setTheme,
+    playing,
+    forward,
+    playPause,
+    reverse,
+    color,
+    setColor,
+  } = useTheme();
   const { multiplier, glowing, trailing, inverseSpeed } = theme;
 
   const resetCamera = () => {};
+  const clickPlayPause = () => {
+    playPause();
+    umami.trackEvent('play_pause_pressed', theme);
+  };
+  const clickReverse = () => {
+    reverse();
+    umami.trackEvent('reverse_pressed', theme);
+  };
+  const changeColor = (colorChoice) => {
+    setColor(colorChoice);
+    umami.trackEvent('color_changed', colorChoice);
+  };
+  const changeMultiplier = (e) => {
+    setTheme({ ...theme, multiplier: +e.target.value });
+  };
+  const changeSpeed = (e) => {
+    setTheme({ ...theme, inverseSpeed: +e.target.value });
+  };
 
   return (
     <div className={styles.Controls}>
@@ -16,7 +43,7 @@ export default function Controls() {
         className={styles.ControlButton}
         id="play"
         value={glowing}
-        onClick={playPause}
+        onClick={clickPlayPause}
       >
         {playing ? 'Pause' : 'Play'}
       </button>
@@ -25,7 +52,7 @@ export default function Controls() {
         className={styles.ControlButton}
         id="reverse"
         value={forward}
-        onClick={reverse}
+        onClick={clickReverse}
       >
         {forward ? 'Reverse' : 'Forward'}
       </button>
@@ -38,7 +65,7 @@ export default function Controls() {
           value={multiplier}
           min={1}
           max={99}
-          onChange={(e) => setTheme({ ...theme, multiplier: +e.target.value })}
+          onChange={(e) => changeMultiplier(e)}
         />
         {multiplier}
       </label>
@@ -50,30 +77,22 @@ export default function Controls() {
           value={inverseSpeed}
           min={1}
           max={2500}
-          onChange={(e) =>
-            setTheme({ ...theme, inverseSpeed: +e.target.value })
-          }
+          onChange={(e) => changeSpeed(e)}
         />
         {inverseSpeed}
       </label>
-      {/* <label htmlFor="glow">
-        Glow
-        <input
-          type="range"
-          id="glow"
-          value={glowing}
-          onChange={(e) => setTheme({ ...theme, glowing: +e.target.value })}
-        />
+      <label htmlFor="color">
+        Color
+        <select
+          id="color"
+          value={color}
+          onChange={(e) => changeColor(e.target.value)}
+        >
+          <option value="orange">Orange-inal</option>
+          <option value="rainbow">Rainbow based on XYZ</option>
+          <option value="trippy">Red Pattern</option>
+        </select>
       </label>
-      <label htmlFor="trail">
-        Trail
-        <input
-          type="range"
-          id="trail"
-          value={trailing}
-          onChange={(e) => setTheme({ ...theme, trailing: +e.target.value })}
-        />
-      </label> */}
       {/* <button
         className={styles.ControlButton}
         id="reset"

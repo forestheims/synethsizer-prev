@@ -13,19 +13,27 @@ export default function Header() {
     // Tone.context.resume();
 
     await Tone.start();
-    console.log('click');
+    window.umami.trackEvent('audio_play_pressed', theme);
     setTheme({ ...theme, toneClicked: !theme.toneClicked });
+  };
+  const handleNext = () => {
+    window.umami.trackEvent('next_pressed', theme);
+    next();
+  };
+  const handlePrev = () => {
+    window.umami.trackEvent('prev_pressed', theme);
+    prev();
   };
 
   return (
     <header className={styles.Header}>
       <h1 className={styles.HOne}>Synethsizer | A Visual Synthesizer</h1>
       <div className={styles.DisplaySelect}>
-        <button className={styles.Button} onClick={prev}>
+        <button className={styles.Button} onClick={() => handlePrev()}>
           Prev
         </button>
         <h2 className={styles.HTwo}>{displayed}</h2>
-        <button className={styles.Button} onClick={next}>
+        <button className={styles.Button} onClick={handleNext}>
           Next
         </button>
         <button className={styles.Button} onClick={handleToneClick}>
