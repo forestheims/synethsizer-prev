@@ -80,11 +80,7 @@ export default function Dot(props) {
       setDotColor(`rgb(${r},${g},${b})`);
     } else if (color === 'trippy') {
       const piValue = Math.PI;
-      r = z * 192 + 128;
-      g = z * 192 + 128;
-      b = z * 192 + 128;
-      // g = (z - (2 * piValue) / 3) * 192 + 128;
-      // b = (z - (4 * piValue) / 3) * 192 + 128;
+      r = Math.round(z * 192 + 128);
 
       if (r > 255) r = 255;
       if (r < 0) r = 0;

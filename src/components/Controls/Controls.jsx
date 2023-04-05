@@ -82,7 +82,7 @@ export default function Controls() {
         {inverseSpeed}
       </label>
       <label htmlFor="color">
-        Color
+        Color:
         <select
           id="color"
           value={color}
