@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "frontend template",
   "main": "src/index.jsx",
-
   "scripts": {
     "test": "jest --verbose",
     "test:watch": "npm run test -- --watch",
@@ -31,6 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
+    "react-scripts": "^5.0.1",
     "reactronica": "^0.8.1-canary.0",
     "three": "^0.148.0",
     "tone": "^14.7.77"
